@@ -6,7 +6,7 @@ execute `test.sh` to run some basic tests, uses `build.sh` to build the stuff.
 `TESTDRIVER_MEASURE=true ./test.sh`
 
 ## Explanation
-I wanted to have a pure Java solution (no dependency) for the typed configuration, which can be reloaded when the configuration on disk changes, and needs to work with Java 8. Also, it should be like a C/C++ header only file. You place it in your project, modify the package and it's ready to use. No jar-file, no dependency. Could be simpler, but when I look back in 6 months I find that all my code looks terrible no matter how much SOLID/Clean-Code I use. The interface must only be used for configuration. All methods must have no parameters and only String, double, long, int, boolean are allowed as return types.
+I wanted to have a pure Java solution (no dependency) for "typed configuration" backed by files, which can be reloaded when the configuration on disk change. Also needs to work with Java 8. It should be like a C/C++ header only file. You drop it in your project, modify the package and it's ready to use. No jar-file, no dependency. The code could be simpler and smarter, but when I look back in 6 months I find that all my code looks terrible no matter how much SOLID/Clean-Code I use. The interface must only be used for configuration. All methods must have no parameters and only String, double, long, int, boolean are allowed as return types.
 
 The idea is as follows:   
 Two annotations are used.   
@@ -38,3 +38,5 @@ if (cnf.logClientResponse()) {
 For native image generation (Quarkus or similar) you must learn the ropes and find a solution.
 If you use java modules, don’t forget to export the package.
 I've used it in a Wildfly-Application-Server and as a standalone microservice. Each POD has its own configuration and a specific feature can be enabled or disabled for testing (as some kind of canary deployment) purposes.
+
+[Blog](https://www.codecoverage.de/posts/java/dynconfig/)
